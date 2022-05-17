@@ -4,9 +4,13 @@
 \alias{initModel}
 \title{Initialize a model from the Rlgt family}
 \usage{
-initModel(model.type = NULL, use.regression = FALSE,
-  seasonalityMethodId = 0, levelMethodId = 0,
-  useSmoothingMethodForError = FALSE)
+initModel(
+  model.type = NULL,
+  use.regression = FALSE,
+  seasonalityMethodId = 0,
+  levelMethodId = 0,
+  useSmoothingMethodForError = FALSE
+)
 }
 \arguments{
 \item{model.type}{type of the forecasting model selected, a character object}

@@ -63,9 +63,9 @@ In terms of mathematical notation, the model can be fully represented as follows
 \item{\eqn{\lambda}}{damping coefficient of the local trend}
 \item{\eqn{\alpha}}{smoothing parameter for the level term}
 \item{\eqn{\beta}}{smoothing parameter for the local trend term}
-\item{\eqn{\sigma}}{coefficient of the heteroscedastic standard deviation}
-\item{\eqn{\tau}}{power coefficient of the heteroscedastic standard deviation}
-\item{\eqn{\xi}}{base or minimum value of the standard deviation}
+\item{\eqn{\sigma}}{coefficient of the size of error function}
+\item{\eqn{\tau}}{power coefficient of the size of error function}
+\item{\eqn{\xi}}{base or minimum value of the size of error function}
 }
 }
 }
@@ -129,6 +129,20 @@ S2GT is designed as an extension to SGT for time series data which exhibit two s
 \item{\eqn{\delta}}{smoothing parameters for the second seasonality factors}
 }
 }
+}
+
+\section{NA}{
+
+
+The best way to get started with the package is to have a look at the vignettes and the various demos that ship with the package. 
+There is a vignette with examples of how to use the various methods included in the package, and a vignette that discusses some of the
+theoretical background.
+
+As to the demos, you can find their source code in the "demo" subfolder in the package sources (available on CRAN). 
+There are some basic demos and other more advanced ones that run on subsets of the M3 dataset and run potentially for hours.
+
+The package contains models for seasonal and non-seasonal data, allows for external regressors, and different 
+error distributions. In the following, we briefly also present some of the theoretical background of the methods.
 }
 
 \keyword{exponential}

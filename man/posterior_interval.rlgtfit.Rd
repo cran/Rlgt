@@ -4,8 +4,7 @@
 \alias{posterior_interval.rlgtfit}
 \title{rlgtfit posterior interval}
 \usage{
-\method{posterior_interval}{rlgtfit}(object, prob = 0.9,
-  type = "central", ...)
+\method{posterior_interval}{rlgtfit}(object, prob = 0.9, type = "central", ...)
 }
 \arguments{
 \item{object}{an object of class rlgtfit}

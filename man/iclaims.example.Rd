@@ -4,14 +4,16 @@
 \name{iclaims.example}
 \alias{iclaims.example}
 \title{Weekly Initial Claims of US Unemployment Benefits & Google Trends Queries}
-\format{A data frame with 443 rows and 5 variables with log-transformation
+\format{
+A data frame with 443 rows and 5 variables with log-transformation
 \describe{
   \item{week}{date of records starting by Mondays with US calendar format}
   \item{claims}{weekly initial claims of unemployment benefits in thousands}
   \item{trend.unemploy}{normalized trend queries retreived from gtrendsR API}
   \item{trend.filling}{normalized trend queries retreived from gtrendsR API}
   \item{trend.job}{normalized trend queries retreived from gtrendsR API}
-}}
+}
+}
 \usage{
 data("iclaims.example")
 }
@@ -32,6 +34,6 @@ An interface for retrieving and displaying the information returned online by Go
 
 Scott, S. L. and Varian, H. R. (2014). Predicting the Present with Bayesian Structural Time Series.
 International Journal of Mathematical Modeling and Optimization 5 4–23.
-\url{http://people.ischool.berkeley.edu/~hal/Papers/2013/pred-present-with-bsts.pdf}
+\url{https://people.ischool.berkeley.edu/~hal/Papers/2013/pred-present-with-bsts.pdf}
 }
 \keyword{datasets}

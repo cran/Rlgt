@@ -4,9 +4,20 @@
 \alias{rlgtfit}
 \title{rlgtfit class}
 \usage{
-rlgtfit(y, model.type, use.regression, seasonalityMethodId, levelMethodId,
-  useSmoothingMethodForError = FALSE, seasonality, seasonality2,
-  rlgtmodel, params, control, samples)
+rlgtfit(
+  y,
+  model.type,
+  use.regression,
+  seasonalityMethodId,
+  levelMethodId,
+  useSmoothingMethodForError = FALSE,
+  seasonality,
+  seasonality2,
+  rlgtmodel,
+  params,
+  control,
+  samples
+)
 }
 \arguments{
 \item{y}{time series data for training (provided as a vector or a ts object).}

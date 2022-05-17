@@ -4,14 +4,29 @@
 \alias{rlgt.control}
 \title{Sets and initializes the control parameters}
 \usage{
-rlgt.control(ADAPT_DELTA = 0.9, MAX_TREE_DEPTH = 12,
-  NUM_OF_CHAINS = 4, NUM_OF_CORES = 4, ADD_JITTER = TRUE,
-  CAUCHY_SD_DIV = 150, NUM_OF_ITER = 5000, MAX_NUM_OF_REPEATS = 2,
-  MAX_RHAT_ALLOWED = 1.006, NUM_OF_SEASON_INIT_CYCLES = 3,
-  MIN_NU = 2, MAX_NU = 20, MIN_POW_TREND = -0.5, MAX_POW_TREND = 1,
-  POW_TREND_ALPHA = 1, POW_TREND_BETA = 1, POW_SEASON_ALPHA = 1,
-  POW_SEASON_BETA = 1, MIN_SIGMA = 1e-10, MIN_VAL = 1e-30,
-  MAX_VAL = 1e+38)
+rlgt.control(
+  ADAPT_DELTA = 0.9,
+  MAX_TREE_DEPTH = 12,
+  NUM_OF_CHAINS = 4,
+  NUM_OF_CORES = 4,
+  ADD_JITTER = TRUE,
+  CAUCHY_SD_DIV = 150,
+  NUM_OF_ITER = 5000,
+  MAX_NUM_OF_REPEATS = 2,
+  MAX_RHAT_ALLOWED = 1.006,
+  NUM_OF_SEASON_INIT_CYCLES = 3,
+  MIN_NU = 2,
+  MAX_NU = 20,
+  MIN_POW_TREND = -0.5,
+  MAX_POW_TREND = 1,
+  POW_TREND_ALPHA = 1,
+  POW_TREND_BETA = 1,
+  POW_SEASON_ALPHA = 1,
+  POW_SEASON_BETA = 1,
+  MIN_SIGMA = 1e-10,
+  MIN_VAL = 1e-30,
+  MAX_VAL = 1e+38
+)
 }
 \arguments{
 \item{ADAPT_DELTA}{Target Metropolis acceptance rate. See Stan manual. Suggested range is between (0.85-0.97).}

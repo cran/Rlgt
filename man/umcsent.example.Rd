@@ -4,7 +4,8 @@
 \name{umcsent.example}
 \alias{umcsent.example}
 \title{University of Michigan Monthly Survey of Consumer Sentiment  & Google Trends Queries}
-\format{A data frame with 174 rows and 8 variables with log-transformation
+\format{
+A data frame with 174 rows and 8 variables with log-transformation
 \describe{
   \item{date}{first date of each month in US calendar format}
   \item{consumer.sent}{monthly initial claims of University of Michigan: Consumer Sentiment}
@@ -13,7 +14,8 @@
   \item{bus.news}{normalized trend queries retreived from gtrendsR API}
   \item{investing}{normalized trend queries retreived from gtrendsR API}
   \item{energy.utilities}{normalized trend queries retreived from gtrendsR API}
-}}
+}
+}
 \usage{
 data("umcsent.example")
 }

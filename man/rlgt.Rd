@@ -4,11 +4,17 @@
 \alias{rlgt}
 \title{Fit an Rlgt model}
 \usage{
-rlgt(y, seasonality = 1, seasonality2 = 1,
+rlgt(
+  y,
+  seasonality = 1,
+  seasonality2 = 1,
   seasonality.type = c("multiplicative", "generalized"),
-  error.size.method = c("std", "innov"), level.method = c("HW",
-  "seasAvg", "HW_sAvg"), xreg = NULL, control = rlgt.control(),
-  verbose = FALSE)
+  error.size.method = c("std", "innov"),
+  level.method = c("HW", "seasAvg", "HW_sAvg"),
+  xreg = NULL,
+  control = rlgt.control(),
+  verbose = FALSE
+)
 }
 \arguments{
 \item{y}{time-series data for training (provided as a numeric vector, or a ts, or msts object).}

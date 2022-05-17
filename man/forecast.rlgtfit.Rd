@@ -4,9 +4,14 @@
 \alias{forecast.rlgtfit}
 \title{Rlgt forecast}
 \usage{
-\method{forecast}{rlgtfit}(object, xreg = NULL,
+\method{forecast}{rlgtfit}(
+  object,
+  xreg = NULL,
   h = ifelse(frequency(object$x) > 1, 2 * frequency(object$x), 10),
-  level = c(80, 95), NUM_OF_TRIALS = 2000, ...)
+  level = c(80, 95),
+  NUM_OF_TRIALS = 2000,
+  ...
+)
 }
 \arguments{
 \item{object}{rlgtfit object}
