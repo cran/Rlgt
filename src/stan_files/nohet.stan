@@ -88,8 +88,8 @@ model {
 	
 	for (t in 2:N) {
 	  if (USE_SMOOTHED_ERROR==0)
-	  	y[t] ~ student_t(nu, expVal[t], sigma*expVal[t]^powx + offsetSigma);
+	  	y[t] ~ student_t(nu, expVal[t], offsetSigma);
 	  else
-	  	y[t] ~ student_t(nu, expVal[t], sigma*smoothedInnovSize[t-1] + offsetSigma);
+	  	y[t] ~ student_t(nu, expVal[t], offsetSigma);
 	}
 }

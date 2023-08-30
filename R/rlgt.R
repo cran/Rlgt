@@ -17,6 +17,8 @@
 #' @param xreg Optionally, a vector or matrix of external regressors, which must have the same number of rows as y. 
 #' @param control list of control parameters, e.g. hyperparameter values for the model's prior distributions, number of fitting interations etc.  
 #' @param verbose whether verbose information should be printed (Boolean value only), default \code{FALSE}.
+#' @param method Sampling method, default \code{Stan}.
+#' @param experimental Run different versions ("nostudent", "noglobal", "nohet", "ets") for ablation studies
 #' @return \code{\link{rlgtfit}} object
 #' @examples
 # \dontrun{
@@ -50,10 +52,29 @@ rlgt <- function(   #y=trainData; seasonality=12; seasonality2=1; seasonality.ty
  	level.method=c("HW", "seasAvg","HW_sAvg"),
  	xreg = NULL,
  	control=rlgt.control(), 
- 	verbose=FALSE) {
+ 	verbose=FALSE,
+	method="Stan", # needs renaming
+	experimental="") {
 
   oldWidth=options("width")
   options(width=180)
+  
+  if(method == "Custom_Gibbs") {
+    # Some checks of the input parameters
+    if(seasonality != 1 || seasonality2 != 1) {
+      print('The current "Custom_Gibbs" method is not seasonal')
+      return(NULL)
+    }
+    # Calling Custom_Gibbs method
+    result = blgt(y, burnin = control$NUM_OF_ITER%/%2, n.samples = control$NUM_OF_ITER%/%2)
+    result$method = "Custom_Gibbs"
+    result$x <- y
+    attr(result, "class") <- "rlgtfit"
+    return(result)
+  } else if(method != "Stan") {
+    print('Only "Stan" and "Custom_Gibbs" are valid values for the "method" parameter')
+    return(NULL)
+  } 
   
   # for safety
   #model.type <- model.type[1]
@@ -108,6 +129,21 @@ rlgt <- function(   #y=trainData; seasonality=12; seasonality2=1; seasonality.ty
     model.type <- "LGT"
   }
   
+
+  if (experimental == "nostudent") {
+    model.type = "nostudent"
+  }
+  if (experimental == "noglobal") {
+    model.type = "noglobal"
+  }
+  if (experimental == "nohet") {
+    model.type = "nohet"
+  }
+  if (experimental == "ets") {
+    model.type = "ets"
+  }
+
+
   if (seasonality <= 1 && levelMethodId != 0) {
     print("Warning: nonstandard level methods implemented only for seasonality models")
   }  
@@ -281,5 +317,6 @@ rlgt <- function(   #y=trainData; seasonality=12; seasonality2=1; seasonality.ty
       useSmoothingMethodForError=useSmoothingMethodForError,
       seasonality=seasonality, seasonality2=seasonality2,   
       model, params, control, samples)
+  out$method = "Stan"
   out
 }

@@ -56,7 +56,7 @@ transformed parameters {
 	expVal[1] = y[1];
 				
 	for (t in 2:N) {
-		expVal[t] = l[t-1]+coefTrend*l[t-1] ^ powTrend+locTrendFract * b[t-1] + r[t];
+		expVal[t] = l[t-1] + locTrendFract * b[t-1] + r[t];
 		l[t] = levSm*(y[t]-r[t]) + (1-levSm)*l[t-1] ;  
 		b[t] = bSm*(l[t]-l[t-1]) + (1-bSm)*locTrendFract*b[t-1] ;
 

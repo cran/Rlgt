@@ -13,7 +13,9 @@ rlgt(
   level.method = c("HW", "seasAvg", "HW_sAvg"),
   xreg = NULL,
   control = rlgt.control(),
-  verbose = FALSE
+  verbose = FALSE,
+  method = "Stan",
+  experimental = ""
 )
 }
 \arguments{
@@ -42,6 +44,10 @@ and HW_sAvg is an weighted average of HW and seasAvg methods.}
 \item{control}{list of control parameters, e.g. hyperparameter values for the model's prior distributions, number of fitting interations etc.}
 
 \item{verbose}{whether verbose information should be printed (Boolean value only), default \code{FALSE}.}
+
+\item{method}{Sampling method, default \code{Stan}.}
+
+\item{experimental}{Run different versions ("nostudent", "noglobal", "nohet", "ets") for ablation studies}
 }
 \value{
 \code{\link{rlgtfit}} object

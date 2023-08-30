@@ -56,8 +56,8 @@ transformed parameters {
 	expVal[1] = y[1];
 				
 	for (t in 2:N) {
-		expVal[t] = l[t-1]+coefTrend*l[t-1] ^ powTrend+locTrendFract * b[t-1] + r[t];
-		l[t] = levSm*(y[t]-r[t]) + (1-levSm)*l[t-1] ;  
+		expVal[t] = l[t-1] + locTrendFract*b[t-1] + r[t];
+		l[t] = levSm*(y[t]-r[t]) + (1-levSm)*l[t-1] ;
 		b[t] = bSm*(l[t]-l[t-1]) + (1-bSm)*locTrendFract*b[t-1] ;
 
 		if (USE_SMOOTHED_ERROR)
@@ -88,8 +88,8 @@ model {
 	
 	for (t in 2:N) {
 	  if (USE_SMOOTHED_ERROR==0)
-	  	y[t] ~ student_t(nu, expVal[t], sigma*expVal[t]^powx + offsetSigma);
+	  	y[t] ~ normal(expVal[t], offsetSigma);
 	  else
-	  	y[t] ~ student_t(nu, expVal[t], sigma*smoothedInnovSize[t-1] + offsetSigma);
+	  	y[t] ~ normal(expVal[t], offsetSigma);
 	}
 }
