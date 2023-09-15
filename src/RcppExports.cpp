@@ -95,12 +95,27 @@ BEGIN_RCPP
 END_RCPP
 }
 
+RcppExport SEXP _rcpp_module_boot_stan_fit4LGT_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4S2GT_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4SGT_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4ets_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4noglobal_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4nohet_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4nostudent_mod();
+
 static const R_CallMethodDef CallEntries[] = {
     {"_Rlgt_rcpp_GridSampleTauPhi", (DL_FUNC) &_Rlgt_rcpp_GridSampleTauPhi, 7},
     {"_Rlgt_rcpp_GridSamplePhi", (DL_FUNC) &_Rlgt_rcpp_GridSamplePhi, 7},
     {"_Rlgt_rcpp_GridSampleRho", (DL_FUNC) &_Rlgt_rcpp_GridSampleRho, 8},
     {"_Rlgt_rcpp_GridSampleRhoGaussianMix", (DL_FUNC) &_Rlgt_rcpp_GridSampleRhoGaussianMix, 6},
     {"_Rlgt_rcpp_expsmooth", (DL_FUNC) &_Rlgt_rcpp_expsmooth, 5},
+    {"_rcpp_module_boot_stan_fit4LGT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4LGT_mod, 0},
+    {"_rcpp_module_boot_stan_fit4S2GT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4S2GT_mod, 0},
+    {"_rcpp_module_boot_stan_fit4SGT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4SGT_mod, 0},
+    {"_rcpp_module_boot_stan_fit4ets_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4ets_mod, 0},
+    {"_rcpp_module_boot_stan_fit4noglobal_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4noglobal_mod, 0},
+    {"_rcpp_module_boot_stan_fit4nohet_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4nohet_mod, 0},
+    {"_rcpp_module_boot_stan_fit4nostudent_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4nostudent_mod, 0},
     {NULL, NULL, 0}
 };
 
