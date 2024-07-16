@@ -1,6 +1,7 @@
-# LGT with custom Gibbs sampler
+# SGT with custom Gibbs sampler
 library(Mcomp)
 library(Rlgt)
+set.seed(12345)
 
 quantileLoss<-function(forec, actual, tau) {
   diff=actual-forec
@@ -8,11 +9,12 @@ quantileLoss<-function(forec, actual, tau) {
   mean(pinBallL/actual)*200
 }
 
-M3.data <- subset(M3,"yearly")
+M3.data <- subset(M3,"monthly")
 M3.data <- sample(M3.data) #shuffle
-w.series <- length(M3.data) 
+w.series <- length(M3.data)
 
 H <- length(M3.data[[1]]$xx)
+seasonality <- frequency(M3.data[[1]]$x)
 
 sumSMAPE=0; sumQ99Loss=0; sumQ95Loss=0; sumQ5Loss=0;
 numOfCases95pExceeded=0; numOfCases5pExceeded=0;
@@ -26,13 +28,14 @@ for (i in 1:w.series) {
   model <- rlgt(trainData, 
                 control=rlgt.control(NUM_OF_ITER=4000),
                 method = "Gibbs",
+                seasonality = seasonality,
                 verbose=FALSE)
   
   forec <- forecast(model, h = H, level=c(90,98))
   
-  plot(forec, main=series)
-  xs <- seq(from=length(trainData)+1,to=length(trainData)+ length(actuals))
-  lines(xs,actuals, col=1, type='b',lwd=2)
+  # plot(forec, main=series)
+  # xs <- seq(from=length(trainData)+1,to=length(trainData)+ length(actuals))
+  # lines(xs,actuals, col=1, type='b',lwd=2)
   
   sMAPE <- mean(abs(forec$mean-actuals)/(forec$mean+actuals))*200
   sumSMAPE=sumSMAPE+sMAPE
@@ -49,7 +52,7 @@ for (i in 1:w.series) {
   sumQ5Loss=sumQ5Loss+q5Loss
   
   print(paste0(series," sMAPE:",signif(sMAPE,3) ,' q5Loss:',signif(q5Loss,3),' q95Loss:',signif(q95Loss,3),' q99Loss:',signif(q99Loss,3) ))
-
+  
 }
 
 sMAPE=sumSMAPE/i

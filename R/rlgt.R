@@ -19,6 +19,7 @@
 #' @param verbose whether verbose information should be printed (Boolean value only), default \code{FALSE}.
 #' @param method Sampling method, default \code{Stan}.
 #' @param experimental Run different versions ("nostudent", "noglobal", "nohet", "ets") for ablation studies
+#' @param homoscedastic Run with homoscedastic or heteroscedastic version of the Gibbs sampler version. By default it is set to \code{FALSE}, i.e., run a heteroscedastic model.
 #' @return \code{\link{rlgtfit}} object
 #' @examples
 # \dontrun{
@@ -54,25 +55,26 @@ rlgt <- function(   #y=trainData; seasonality=12; seasonality2=1; seasonality.ty
  	control=rlgt.control(), 
  	verbose=FALSE,
 	method="Stan", # needs renaming
-	experimental="") {
+	experimental="",
+	homoscedastic = F) {
 
   oldWidth=options("width")
   options(width=180)
   
-  if(method == "Custom_Gibbs") {
+  if(method == "Gibbs") {
     # Some checks of the input parameters
-    if(seasonality != 1 || seasonality2 != 1) {
-      print('The current "Custom_Gibbs" method is not seasonal')
+    if(seasonality2 != 1) {
+      print('The current "Gibbs" method is not dual-seasonal')
       return(NULL)
     }
-    # Calling Custom_Gibbs method
-    result = blgt(y, burnin = control$NUM_OF_ITER%/%2, n.samples = control$NUM_OF_ITER%/%2)
-    result$method = "Custom_Gibbs"
+    # Calling Gibbs method
+    result = blgt(y, burnin = ceiling(control$NUM_OF_ITER), n.samples = ceiling(control$NUM_OF_ITER), m = seasonality, homoscedastic = homoscedastic)
+    result$method = "Gibbs"
     result$x <- y
     attr(result, "class") <- "rlgtfit"
     return(result)
   } else if(method != "Stan") {
-    print('Only "Stan" and "Custom_Gibbs" are valid values for the "method" parameter')
+    print('Only "Stan" and "Gibbs" are valid values for the "method" parameter')
     return(NULL)
   } 
   
@@ -142,6 +144,19 @@ rlgt <- function(   #y=trainData; seasonality=12; seasonality2=1; seasonality.ty
   if (experimental == "ets") {
     model.type = "ets"
   }
+  if (experimental == "nostudentSGT") {
+    model.type = "nostudentSGT"
+  }
+  if (experimental == "noglobalSGT") {
+    model.type = "noglobalSGT"
+  }
+  if (experimental == "nohetSGT") {
+    model.type = "nohetSGT"
+  }
+  if (experimental == "etsAAM") {
+    model.type = "etsAAM"
+  }
+  
 
 
   if (seasonality <= 1 && levelMethodId != 0) {

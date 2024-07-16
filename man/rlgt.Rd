@@ -15,7 +15,8 @@ rlgt(
   control = rlgt.control(),
   verbose = FALSE,
   method = "Stan",
-  experimental = ""
+  experimental = "",
+  homoscedastic = F
 )
 }
 \arguments{
@@ -48,6 +49,8 @@ and HW_sAvg is an weighted average of HW and seasAvg methods.}
 \item{method}{Sampling method, default \code{Stan}.}
 
 \item{experimental}{Run different versions ("nostudent", "noglobal", "nohet", "ets") for ablation studies}
+
+\item{homoscedastic}{Run with homoscedastic or heteroscedastic version of the Gibbs sampler version. By default it is set to \code{FALSE}, i.e., run a heteroscedastic model.}
 }
 \value{
 \code{\link{rlgtfit}} object

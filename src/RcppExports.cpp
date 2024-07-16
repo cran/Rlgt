@@ -46,8 +46,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_GridSampleRho
-List rcpp_GridSampleRho(NumericVector R, NumericVector u, NumericVector ytilde, NumericVector v2, NumericVector logl, NumericVector w1, NumericVector nu, NumericVector rhoscale);
-RcppExport SEXP _Rlgt_rcpp_GridSampleRho(SEXP RSEXP, SEXP uSEXP, SEXP ytildeSEXP, SEXP v2SEXP, SEXP loglSEXP, SEXP w1SEXP, SEXP nuSEXP, SEXP rhoscaleSEXP) {
+List rcpp_GridSampleRho(NumericVector R, NumericVector u, NumericVector ytilde, NumericVector v2, NumericVector logl, NumericVector w1, NumericVector nu, NumericVector s, NumericVector rhoscale);
+RcppExport SEXP _Rlgt_rcpp_GridSampleRho(SEXP RSEXP, SEXP uSEXP, SEXP ytildeSEXP, SEXP v2SEXP, SEXP loglSEXP, SEXP w1SEXP, SEXP nuSEXP, SEXP sSEXP, SEXP rhoscaleSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -58,8 +58,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type logl(loglSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type w1(w1SEXP);
     Rcpp::traits::input_parameter< NumericVector >::type nu(nuSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type s(sSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type rhoscale(rhoscaleSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_GridSampleRho(R, u, ytilde, v2, logl, w1, nu, rhoscale));
+    rcpp_result_gen = Rcpp::wrap(rcpp_GridSampleRho(R, u, ytilde, v2, logl, w1, nu, s, rhoscale));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -94,28 +95,54 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_sexpsmooth
+List rcpp_sexpsmooth(NumericVector y, NumericVector alphaV, NumericVector betaV, NumericVector zetaV, NumericVector l1, NumericVector b1, NumericVector log_s1);
+RcppExport SEXP _Rlgt_rcpp_sexpsmooth(SEXP ySEXP, SEXP alphaVSEXP, SEXP betaVSEXP, SEXP zetaVSEXP, SEXP l1SEXP, SEXP b1SEXP, SEXP log_s1SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type alphaV(alphaVSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type betaV(betaVSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type zetaV(zetaVSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type l1(l1SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type b1(b1SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type log_s1(log_s1SEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_sexpsmooth(y, alphaV, betaV, zetaV, l1, b1, log_s1));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 RcppExport SEXP _rcpp_module_boot_stan_fit4LGT_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4S2GT_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4SGT_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4ets_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4etsAAM_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4noglobal_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4noglobalSGT_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4nohet_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4nohetSGT_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4nostudent_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4nostudentSGT_mod();
 
 static const R_CallMethodDef CallEntries[] = {
     {"_Rlgt_rcpp_GridSampleTauPhi", (DL_FUNC) &_Rlgt_rcpp_GridSampleTauPhi, 7},
     {"_Rlgt_rcpp_GridSamplePhi", (DL_FUNC) &_Rlgt_rcpp_GridSamplePhi, 7},
-    {"_Rlgt_rcpp_GridSampleRho", (DL_FUNC) &_Rlgt_rcpp_GridSampleRho, 8},
+    {"_Rlgt_rcpp_GridSampleRho", (DL_FUNC) &_Rlgt_rcpp_GridSampleRho, 9},
     {"_Rlgt_rcpp_GridSampleRhoGaussianMix", (DL_FUNC) &_Rlgt_rcpp_GridSampleRhoGaussianMix, 6},
     {"_Rlgt_rcpp_expsmooth", (DL_FUNC) &_Rlgt_rcpp_expsmooth, 5},
+    {"_Rlgt_rcpp_sexpsmooth", (DL_FUNC) &_Rlgt_rcpp_sexpsmooth, 7},
     {"_rcpp_module_boot_stan_fit4LGT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4LGT_mod, 0},
     {"_rcpp_module_boot_stan_fit4S2GT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4S2GT_mod, 0},
     {"_rcpp_module_boot_stan_fit4SGT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4SGT_mod, 0},
     {"_rcpp_module_boot_stan_fit4ets_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4ets_mod, 0},
+    {"_rcpp_module_boot_stan_fit4etsAAM_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4etsAAM_mod, 0},
     {"_rcpp_module_boot_stan_fit4noglobal_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4noglobal_mod, 0},
+    {"_rcpp_module_boot_stan_fit4noglobalSGT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4noglobalSGT_mod, 0},
     {"_rcpp_module_boot_stan_fit4nohet_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4nohet_mod, 0},
+    {"_rcpp_module_boot_stan_fit4nohetSGT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4nohetSGT_mod, 0},
     {"_rcpp_module_boot_stan_fit4nostudent_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4nostudent_mod, 0},
+    {"_rcpp_module_boot_stan_fit4nostudentSGT_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4nostudentSGT_mod, 0},
     {NULL, NULL, 0}
 };
 

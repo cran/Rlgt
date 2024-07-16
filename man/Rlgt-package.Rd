@@ -145,6 +145,32 @@ The package contains models for seasonal and non-seasonal data, allows for exter
 error distributions. In the following, we briefly also present some of the theoretical background of the methods.
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/cbergmeir/Rlgt}
+}
+
+}
+\author{
+\strong{Maintainer}: Christoph Bergmeir \email{christoph.bergmeir@monash.edu}
+
+Authors:
+\itemize{
+  \item Slawek Smyl \email{slaweks@hotmail.co.uk}
+  \item Erwin Wibowo \email{rwinwibowo@gmail.com}
+  \item To Wang Ng \email{edwinnglabs@gmail.com}
+  \item Xueying Long \email{xueying.long@monash.edu}
+  \item Alexander Dokumentov \email{alexander.dokumentov@gmail.com}
+  \item Daniel Schmidt \email{daniel.schmidt@monash.edu}
+}
+
+Other contributors:
+\itemize{
+  \item Trustees of Columbia University (tools/make_cpp.R, R/stanmodels.R) [copyright holder]
+}
+
+}
 \keyword{exponential}
 \keyword{forecasting}
 \keyword{smoothing}

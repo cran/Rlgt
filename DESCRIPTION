@@ -1,9 +1,9 @@
 Package: Rlgt
 Type: Package
 Title: Bayesian Exponential Smoothing Models with Trend Modifications
-Version: 0.2-1
+Version: 0.2-2
 URL: https://github.com/cbergmeir/Rlgt
-Date: 2023-09-14
+Date: 2024-07-16
 Authors@R: c(
     person("Slawek", "Smyl", email = "slaweks@hotmail.co.uk", role = "aut"),
     person("Christoph", "Bergmeir", email = "christoph.bergmeir@monash.edu", role = c("aut", "cre")),
@@ -32,10 +32,10 @@ LinkingTo: StanHeaders (>= 2.26.0), rstan (>= 2.26.0), BH (>= 1.66.0),
         5.0.2)
 SystemRequirements: GNU make
 NeedsCompilation: yes
-RoxygenNote: 7.2.3
-Suggests: knitr, rmarkdown
+RoxygenNote: 7.3.2
+Suggests: doParallel, foreach, knitr, rmarkdown
 VignetteBuilder: knitr
-Packaged: 2023-09-14 16:27:44 UTC; bergmeir
+Packaged: 2024-07-16 12:54:16 UTC; bergmeir
 Author: Slawek Smyl [aut],
   Christoph Bergmeir [aut, cre],
   Erwin Wibowo [aut],
@@ -47,4 +47,4 @@ Author: Slawek Smyl [aut],
     R/stanmodels.R)
 Maintainer: Christoph Bergmeir <christoph.bergmeir@monash.edu>
 Repository: CRAN
-Date/Publication: 2023-09-15 22:12:12 UTC
+Date/Publication: 2024-07-16 21:40:02 UTC

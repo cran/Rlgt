@@ -64,8 +64,8 @@ forecast.rlgtfit <- function(object,
   
   quantiles=percentiles/100.
 
-  if(!is.null(object$method) && object$method == "Custom_Gibbs") {
-    fcast = blgt.forecast(object, h, NUM_OF_TRIALS)
+  if(!is.null(object$method) && object$method == "Gibbs") {
+    fcast = blgt.forecast(object, h, 1e5)
     # Presenting Schmidt's result as a forecast package object
     result = list()
     result$model = object
@@ -260,9 +260,17 @@ forecast.rlgtfit <- function(object,
         }
         
         if (is.null(powSeasonS)) {
-					expVal <-(prevLevel + coefTrendS*abs(prevLevel)^powTrendS)* season + r[t];	
+          if (object$model.type == "noglobalSGT" || object$model.type == "etsAAM") {
+            expVal <-(prevLevel)* season + r[t];	
+          } else {
+            expVal <-(prevLevel + coefTrendS*abs(prevLevel)^powTrendS)* season + r[t];	
+          }
         } else {#generalized
-          expVal <- prevLevel + coefTrendS*abs(prevLevel)^powTrendS + season + r[t];
+          if (object$model.type == "noglobalSGT" || object$model.type == "etsAAM") {
+            expVal <- prevLevel + season + r[t];
+          } else {
+            expVal <- prevLevel + coefTrendS*abs(prevLevel)^powTrendS + season + r[t];
+          }
         }
         
         if (!is.null(powx)) {
@@ -273,8 +281,16 @@ forecast.rlgtfit <- function(object,
           omega <- sigmaS
         }
         
-        # Generate the t-dist error
-        error <- rst(n=1, xi=0 ,omega=omega, alpha=0, nu=nuS)
+        if (object$model.type == "nostudentSGT") {
+          error <- rnorm(n=1, mean=0, sd=omega)
+        } else if(object$model.type == "nohetSGT") {
+          error <- rst(n=1, xi=0, omega=offsetsigmaS, alpha=0, nu=nuS)
+        } else if(object$model.type == "etsAAM") {
+          error <- rnorm(n=1, mean=0, sd=offsetsigmaS)
+        } else {
+          # Generate the t-dist error
+          error <- rst(n=1, xi=0 ,omega=omega, alpha=0, nu=nuS)
+        }
         
         # Fill in the matrix of predicted value
         yf[irun,t] <- min(MAX_VAL,max(MIN_VAL,expVal+error))
