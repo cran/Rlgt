@@ -42,7 +42,7 @@
 # }
 # 
 # @export
-blgt <- function(y.full, burnin = 1e4, n.samples = 1e4, m = 1, homoscedastic = T)
+blgt <- function(y.full, burnin = 1e4, n.samples = 1e4, m = 1, homoscedastic = F)
 {
   # nu proposal
   # nu.prop = c(0.1,0.2,0.4,0.6,0.8,1,1.15,1.35,1.6,1.95, 2.4, 3, 4, 5.6, 8.84, 18.63, 1e3)
@@ -60,10 +60,10 @@ blgt <- function(y.full, burnin = 1e4, n.samples = 1e4, m = 1, homoscedastic = T
   # add seasonal flag
   if (m > 1) {
     seasonal = T
-    print("Fitting a seasonal model...")
+    # print("Fitting a seasonal model...")
   } else {
-    print("Fitting a non-seasonal model now...")
-    print("If you want to fit a seasonal model, set Seasonality to be at least 2.")
+    # print("Fitting a non-seasonal model now...")
+    # print("If you want to fit a seasonal model, set Seasonality to be at least 2.")
     seasonal = F
   }
   
@@ -184,9 +184,6 @@ blgt <- function(y.full, burnin = 1e4, n.samples = 1e4, m = 1, homoscedastic = T
   
   iter     = 0
   k        = 0
-  
-  tau = 0
-  phi = 1
   
   # Hyperparameters
   sigma2.B     = 0

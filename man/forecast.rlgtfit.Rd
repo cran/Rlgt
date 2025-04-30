@@ -39,7 +39,7 @@ produce forecasts from an \code{\link{rlgtfit}} object
 # 4 chains should be used (the default). To speed up computation the number of 
 # cores should also be adjusted (default is 4).
 
-rlgt_model <- rlgt(lynx, 
+rlgt_model <- rlgt(lynx, method = "Stan",
        control=rlgt.control(MAX_NUM_OF_REPEATS=1, NUM_OF_ITER=50, NUM_OF_CHAINS = 1, 
                             NUM_OF_CORES = 1), verbose=TRUE)
 
